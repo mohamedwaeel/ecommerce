@@ -1,0 +1,41 @@
+<section
+  class="w-75 mx-auto bg-main-light p-4 my-4"
+  *ngFor="let item of orders"
+>
+  <h2 class="h1 text-center text-main">All Orders</h2>
+  <div class="border-bottom d-flex justify-content-between">
+    <div>
+      <p>Name : {{ item.user.name }}</p>
+      <p>Address : {{ item.shippingAddress.city }}</p>
+      <p>Phone : {{ item.user.phone }}</p>
+    </div>
+
+    <p class="align-self-center text-main">
+      Total Price : {{ item.totalOrderPrice }}
+    </p>
+  </div>
+  <div class="row py-2 border-bottom" *ngFor="let cartItem of item.cartItems">
+    <div class="col-md-1">
+      <img
+        [src]="cartItem.product.imageCover"
+        [alt]="cartItem.product.title"
+        class="w-100"
+      />
+    </div>
+    <div class="col-md-11">
+      <div class="d-flex align-items-center justify-content-between">
+        <div>
+          <h3 class="h5">{{ cartItem.product.title }}</h3>
+          <p class="text-main">
+            price : {{ cartItem.price | currency : " EGP " }}
+          </p>
+        </div>
+        <div>
+          <span class="px-3 text-main m-0">
+            number of items : {{ cartItem.count }}</span
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

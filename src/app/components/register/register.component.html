@@ -1,0 +1,136 @@
+<section class="bg-main-light my-4 p-4">
+  <div>
+    <h2>Register now</h2>
+    <form [formGroup]="registerationForm" (ngSubmit)="handleForm()">
+      <label for="name">Name</label>
+      <input
+        #inputName
+        type="text"
+        id="name"
+        formControlName="name"
+        class="form-control mb-4"
+      />
+      <div
+        class="alert alert-danger"
+        *ngIf="
+          registerationForm.get('name')?.errors &&
+          (registerationForm.get('name')?.touched || inputName.value.length > 0)
+        "
+      >
+        <p *ngIf="registerationForm.get('name')?.getError('required')">
+          name is required
+        </p>
+        <p *ngIf="registerationForm.get('name')?.getError('minlength')">
+          name min length is 3
+        </p>
+        <p *ngIf="registerationForm.get('name')?.getError('maxlength')">
+          name max length is 20
+        </p>
+      </div>
+
+      <label for="email">Email</label>
+      <input
+        #inputEmail
+        type="email"
+        id="email"
+        formControlName="email"
+        class="form-control mb-4"
+      />
+      <div
+        class="alert alert-danger"
+        *ngIf="
+          registerationForm.get('email')?.errors &&
+          (registerationForm.get('email')?.touched ||
+            inputEmail.value.length > 0)
+        "
+      >
+        <p *ngIf="registerationForm.get('email')?.getError('required')">
+          email is required
+        </p>
+        <p *ngIf="registerationForm.get('email')?.getError('email')">
+          email invalid
+        </p>
+      </div>
+
+      <label for="passwrod">passwrod</label>
+      <input
+        #inputPassword
+        type="password"
+        id="passwrod"
+        formControlName="password"
+        class="form-control mb-4"
+      />
+      <div
+        class="alert alert-danger"
+        *ngIf="
+          registerationForm.get('password')?.errors &&
+          (registerationForm.get('password')?.touched ||
+            inputPassword.value.length > 0)
+        "
+      >
+        <p *ngIf="registerationForm.get('password')?.getError('required')">
+          password is required
+        </p>
+        <p *ngIf="registerationForm.get('password')?.getError('pattern')">
+          password must start with upperCase then from 6 to 10
+        </p>
+      </div>
+      <label for="rePassword">repassword</label>
+      <input
+        #inputRePassword
+        type="password"
+        id="rePassword"
+        formControlName="rePassword"
+        class="form-control mb-4"
+      />
+      <div
+        class="alert alert-danger"
+        *ngIf="
+          registerationForm.get('rePassword')?.errors &&
+          (registerationForm.get('rePassword')?.touched ||
+            inputRePassword.value.length > 0)
+        "
+      >
+        <p *ngIf="registerationForm.get('rePassword')?.getError('required')">
+          repassword is required
+        </p>
+        <p *ngIf="registerationForm.get('rePassword')?.getError('misMatch')">
+          repassword don't match
+        </p>
+      </div>
+
+      <label for="phone">phone</label>
+      <input
+        #inputPhone
+        type="tel"
+        id="phone"
+        formControlName="phone"
+        class="form-control mb-4"
+      />
+      <div
+        class="alert alert-danger"
+        *ngIf="
+          registerationForm.get('phone')?.errors &&
+          (registerationForm.get('phone')?.touched ||
+            inputPhone.value.length > 0)
+        "
+      >
+        <p *ngIf="registerationForm.get('phone')?.getError('required')">
+          phone is required
+        </p>
+        <p *ngIf="registerationForm.get('phone')?.getError('pattern')">
+          accept only egypt phone numbers
+        </p>
+      </div>
+      <button
+        [disabled]="registerationForm.invalid"
+        class="main-btn ms-auto d-block"
+      >
+        <i *ngIf="isLoading" class="fa-solid fa-spinner fa-spin"></i>
+        Register
+      </button>
+
+      <p class="alert alert-danger my-2" *ngIf="msgError">{{ msgError }}</p>
+    </form>
+  </div>
+</section>

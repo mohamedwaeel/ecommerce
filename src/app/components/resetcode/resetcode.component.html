@@ -1,0 +1,27 @@
+<section class="bg-main-light my-4 p-4 rounded-2">
+  <div>
+    <h2>Enter your verfication Code</h2>
+    <form [formGroup]="codeForm" (ngSubmit)="handleForm()">
+      <label for="code">Code</label>
+      <input
+        #codeInput
+        type="text"
+        id="code"
+        formControlName="resetCode"
+        class="form-control mb-4"
+      />
+      <div
+        class="alert alert-danger"
+        *ngIf="
+          codeForm.get('resetCode')?.errors &&
+          (codeForm.get('resetCode')?.touched || codeInput.value.length > 0)
+        "
+      >
+        <p *ngIf="codeForm.get('resetCode')?.getError('required')">
+          email is required
+        </p>
+      </div>
+      <button [disabled]="codeForm.invalid" class="btn-main">reset</button>
+    </form>
+  </div>
+</section>

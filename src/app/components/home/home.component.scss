@@ -1,0 +1,10 @@
+.wish{
+position: absolute;
+bottom: 100%;
+right: 10px;
+transition: all 1s;
+}
+.product:hover .wish{
+    bottom: 90%;
+    right: 10px; 
+}

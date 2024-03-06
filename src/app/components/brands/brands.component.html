@@ -1,0 +1,15 @@
+<section class="my-3">
+  <h2 class="text-center text-main">All Brands</h2>
+  <div class="row g-4">
+    <div class="col-md-3" *ngFor="let item of brands">
+      <div class="product p-2 card">
+        <div>
+          <img [src]="item.image" class="card-img-top" [alt]="item.name" />
+          <div class="card-body text-center">
+            <h3 class="card-text text-main">{{ item.name }}</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
